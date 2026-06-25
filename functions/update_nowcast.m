@@ -1,4 +1,5 @@
-function update_nowcast(X_old,X_new,Time,Spec,Res,series,period,vintage_old,vintage_new)
+function [y_old,y_new,news_table,Time_ext,t_nowcast] = update_nowcast(X_old,X_new,Time,Spec,Res,series,period,vintage_old,vintage_new)
+% added output arguments [y_old,y_new,news_table,Time_ext,t_nowcast]
 
 
 if ~isnumeric(vintage_old)
@@ -72,6 +73,7 @@ fprintf('\n\n\n');
 fprintf('Nowcast Update: %s \n', datestr(vintage_new, 'mmmm dd, yyyy'))
 fprintf('Nowcast for %s (%s), %s \n',Spec.SeriesName{i_series},Spec.UnitsTransformed{i_series},datestr(Time(t_nowcast),'YYYY:QQ'));
 
+news_table = table();  % ensure news_table is defined even on the no-forecast path
 if(isempty(forecast))  % Only display table output if a forecast is made
     fprintf('\n  No forecast was made.\n')
 else
@@ -108,6 +110,7 @@ else
 end
 
 % Output results to structure
+Time_ext = Time;   % <<< return the 12-month-extended Time vector.
 
 
 
@@ -648,4 +651,3 @@ function [y,C,R,L]  = MissData(y,C,R)
   R  =  R(ix,ix);
 
 end
-
