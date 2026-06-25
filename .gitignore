@@ -4,3 +4,9 @@ temp_edited_data.xlsx
 mat/
 
 .DS_Store
+# MATLAB project files (local IDE metadata)
+*.prj
+
+# Expanded spec files (use Spec_US_example.xls instead)
+Spec_US_expanded.xlsx
+data/Data_US_matching_expanded_spec.xlsx
