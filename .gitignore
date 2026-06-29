@@ -10,3 +10,15 @@ mat/
 # Expanded spec files (use Spec_US_example.xls instead)
 Spec_US_expanded.xlsx
 data/Data_US_matching_expanded_spec.xlsx
+
+# macOS / Office / MATLAB build junk
+.DS_Store
+**/.DS_Store
+~$*
+deploymentLog.html
+.buildtool/
+**/.buildtool/
+
+# Generated DFM / data caches
+ResDFM.mat
+**/mat/*.mat

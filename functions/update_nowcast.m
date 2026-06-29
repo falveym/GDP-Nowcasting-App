@@ -1,5 +1,4 @@
-function [y_old,y_new,news_table,Time_ext,t_nowcast] = update_nowcast(X_old,X_new,Time,Spec,Res,series,period,vintage_old,vintage_new)
-% added output arguments [y_old,y_new,news_table,Time_ext,t_nowcast]
+function [y_old,y_new,news_table,Time_ext,t_nowcast,data_released] = update_nowcast(X_old,X_new,Time,Spec,Res,series,period,vintage_old,vintage_new)% added output arguments [y_old,y_new,news_table,Time_ext,t_nowcast]
 
 
 if ~isnumeric(vintage_old)
@@ -57,8 +56,10 @@ end
 %     b. Compute the impact from new data releases
 
 
-X_rev = X_new;  
-X_rev(isnan(X_old)) = NaN;  
+X_rev = X_new;
+X_rev(isnan(X_old)) = NaN;
+% Series with a new release between vintages (matches example_Nowcast.m display filter)
+data_released = any(isnan(X_old) & ~isnan(X_new), 1);
 
 % Compute news --------------------------------------------------------
 
@@ -88,7 +89,7 @@ else
                             'RowNames', Spec.SeriesID);
 
     % Select only series with updates
-    data_released = any(isnan(X_old) & ~isnan(X_new), 1);  
+    % data_released = any(isnan(X_old) & ~isnan(X_new), 1);  
 
     % Display the impact decomposition
     fprintf('\n  Nowcast Impact Decomposition \n')
