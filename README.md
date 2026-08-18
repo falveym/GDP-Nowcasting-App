@@ -183,8 +183,6 @@ Use the export controls to save the computed outputs — the news/detail table a
 ---
 
 ## AI Copilot (LLM integration)
-![Select LLM Model](docs/images/10_llm.png)
-![AI Copilot Response](docs/images/11_ai_response.png)
 
 The **AI Copilot** tab lets you ask questions in plain English about the current nowcast and its news decomposition. It sends a compact, pre‑computed summary of the news table to a language model and returns the answer in the tab. Two backends are supported:
 
@@ -299,7 +297,10 @@ Ollama runs an open model entirely on your Mac and exposes a local REST API on *
 1. Run a nowcast first so there is a news table for the Copilot to read.
 2. Open the **AI Copilot** tab and pick a backend (**ChatGPT** or **Ollama**).
 3. Provide credentials if using ChatGPT (paste the API key), or confirm the Ollama server is reachable.
+![Select LLM Model](docs/images/10_llm.png)
+
 4. Select a prompt — for example, "Summarize the current nowcast results" — and submit.
+![AI Copilot Response](docs/images/11_ai_response.png)
 
 The app anchors the model's answer to the **Impact** column of the exported news table, so responses stay grounded in the numbers actually computed. For economist‑grade reliability, a larger backend model (for example, a bigger Ollama model, memory permitting, or a larger OpenAI model) generally gives more dependable readings than the lightweight defaults.
 
