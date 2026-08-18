@@ -129,10 +129,14 @@ A *vintage* is a snapshot of the data as it existed on a given date. The news de
 ---
 
 ## Using the app
+![GDP Nowcasting App Main Tab](docs/images/01_main.png)
 
 The app opens on the **Configure Run** (main) tab. The typical flow is: load files → pick your target series/period → run → inspect results and figures → export → ask the Copilot.
 
 ### 1. Loading files
+![Load Specification File](docs/images/02_spec.png)
+![Load Old Vintage](docs/images/03_old_vintage.png)
+![Load New Vintage](docs/images/04_new_vintage.png)
 
 The file‑loading panel has 3 file loading columns, each with a **Load** button, a **Use Sample** button, and a status label:
 
@@ -147,6 +151,8 @@ The file‑loading panel has 3 file loading columns, each with a **Load** button
 - On success the status label turns green and shows a check mark plus the filename, e.g. `✓ Spec_US_example.xls (sample)`. On failure it shows an inline red error message.
 
 ### 2. Configuring and running the model
+![Select Economic Series](docs/images/05_series.png)
+![Run Model](docs/images/06_run_model.png)
 
 1. Use the **block + series filter** to review which indicators are included and how they load on the factor blocks.
 2. Press **Run**. Under the hood the app calls the FRBNY engine:
@@ -154,10 +160,12 @@ The file‑loading panel has 3 file loading columns, each with a **Load** button
    - It then computes the nowcast and, if both vintages are present, the **news decomposition** (`update_nowcast` / `compute_news_table`), producing a table of *Forecast, Actual, Weight, Impact* for each released series.
 
 ### 3. Reading the results
+![Results Tab](docs/images/07_results.png)
 
 The **Results** tab shows the headline nowcast figures and summary statistics. The **Summary / Forecast Details** tab shows the per‑series news table — the same "Nowcast Detail Table" that the FRBNY `update_nowcast.m` prints to the console, restricted to series that had a new release between the two vintages. See [Understanding the two nowcast numbers](#understanding-the-two-nowcast-numbers) for how the two headline figures differ.
 
 ### 4. Figures
+![Figures Tab](docs/images/08_figures.png)
 
 The **Figures** tab has nested sub‑tabs:
 
@@ -166,12 +174,17 @@ The **Figures** tab has nested sub‑tabs:
 - **Common Factor** — the estimated common factor and the standardized data it summarizes.
 
 ### 5. Exporting
+![Summary Table](docs/images/09_summary.png)
+![Export News](docs/images/13_export_news.png)
+![Export Summary](docs/images/14_export_summary.png)
 
 Use the export controls to save the computed outputs — the news/detail table and figures — to disk so they can be shared or embedded elsewhere. Tables are written with `writetable` (macOS/Windows‑safe); figures can be saved to standard image formats. Estimated model parameters are saved to a `ResDFM.mat` file, which you can later reload through the **Estimated Model** slot to reproduce a run without re‑estimating.
 
 ---
 
 ## AI Copilot (LLM integration)
+![Select LLM Model](docs/images/10_llm.png)
+![AI Copilot Response](docs/images/11_ai_response.png)
 
 The **AI Copilot** tab lets you ask questions in plain English about the current nowcast and its news decomposition. It sends a compact, pre‑computed summary of the news table to a language model and returns the answer in the tab. Two backends are supported:
 
@@ -319,6 +332,7 @@ Seeing the two values disagree is expected; they answer slightly different quest
 ---
 
 ## Credits and license
+![About Tab](docs/images/12_about.png) 
 
 - The nowcasting engine (`dfm.m`, `update_nowcast.m`, `News_DFM`, `para_const`, `remNaNs_spline.m`, Kalman filter/smoother routines) is based on the **Federal Reserve Bank of New York** open‑source *Nowcasting* replication code, in turn implementing Bańbura, Giannone & Reichlin (2010), "Nowcasting", in Clements & Hendry (eds.), *Oxford Handbook on Economic Forecasting*. Please retain those acknowledgements in any published work.
 - The GUI, visualizations, export tooling, and AI Copilot integration are original additions in this repository.
