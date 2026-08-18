@@ -303,6 +303,7 @@ Ollama runs an open model entirely on your Mac and exposes a local REST API on *
 
 The app anchors the model's answer to the **Impact** column of the exported news table, so responses stay grounded in the numbers actually computed. For economist‑grade reliability, a larger backend model (for example, a bigger Ollama model, memory permitting, or a larger OpenAI model) generally gives more dependable readings than the lightweight defaults.
 
+![Export AI Response](docs/images/15_export_ai.png) 
 ---
 
 ## Understanding the two nowcast numbers
